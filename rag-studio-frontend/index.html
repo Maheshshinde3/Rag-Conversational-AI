@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAG Studio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand-row">
+          <div class="logo">R</div>
+          <div class="brand"><strong>RAG</strong> <span>Studio</span></div>
+          <button
+            class="icon-btn collapse-btn"
+            id="collapseBtn"
+            title="Collapse sidebar"
+          >
+            ‹
+          </button>
+        </div>
+
+        <button class="new-chat" id="newChatBtn">
+          <span class="new-chat-icon">＋</span>
+          <strong>New conversation</strong>
+          <kbd>⌘ K</kbd>
+        </button>
+
+        <div class="search-box">
+          <span>⌕</span>
+          <input
+            id="conversationSearch"
+            type="text"
+            placeholder="Search conversations"
+          />
+        </div>
+
+        <div class="section-label">WORKSPACE</div>
+        <nav>
+          <button class="nav-item active" id="conversation" data-view="chat">
+            <span class="nav-icon">▢</span><span>Conversations</span
+            ><small id="conversationCount">0</small>
+          </button>
+          <button class="nav-item" id="knowledgeBtn">
+            <span class="nav-icon">▤</span><span>Knowledge base</span>
+          </button>
+          <button class="nav-item">
+            <span class="nav-icon">□</span><span>Collections</span>
+          </button>
+        </nav>
+
+        <div class="section-label recent-label">RECENT</div>
+        <div class="recent-list" id="recentList">
+          <div class="empty-recent">No conversations found.</div>
+        </div>
+
+        <div class="sidebar-bottom">
+          <button class="nav-item">
+            <span class="nav-icon">⚙</span><span>Settings</span>
+          </button>
+          <div class="workspace-card">
+            <div class="avatar">C</div>
+            <div>
+              <strong>Personal workspace</strong
+              ><small>Local RAG project</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2>New conversation</h2>
+            <div class="status"><i></i> Grounded AI workspace</div>
+          </div>
+          <div class="top-actions">
+            <button class="engine-btn">
+              ✧ &nbsp; RAG Engine <span>⌄</span>
+            </button>
+            <button class="book-btn" title="Knowledge base">▢</button>
+          </div>
+        </header>
+
+        <section class="content" id="content">
+          <div class="hero" id="hero">
+            <div class="eyebrow">YOUR PRIVATE KNOWLEDGE ASSISTANT</div>
+            <h1>Turn documents into<br /><span>useful answers.</span></h1>
+            <p>
+              Ask questions about your knowledge base and get answers grounded
+              in the documents you provide.
+            </p>
+
+            <div class="suggestions">
+              <button class="suggestion" data-prompt="Summarize my documents">
+                <strong>Summarize my documents</strong>
+                <span
+                  >Summarize the most important information across my
+                  documents.</span
+                >
+                <b>↗</b>
+              </button>
+              <button class="suggestion" data-prompt="Find key insights">
+                <strong>Find key insights</strong>
+                <span>What are the most important insights I should know?</span>
+                <b>↗</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="chat-area" id="chatArea"> </div>
+
+          <div class="composer-wrap">
+            <button class="attach-btn" id="attachBtn" title="Upload documents">
+              ⌕
+            </button>
+            <input
+              type="file"
+              id="fileInput"
+              multiple
+              accept=".pdf,.doc,.docx,.txt"
+              hidden
+            />
+            <textarea
+              id="messageInput"
+              rows="1"
+              placeholder="Ask anything about your documents..."
+            ></textarea>
+            <button class="send-btn" id="sendBtn" >↑</button>
+          </div>
+          <div class="disclaimer">
+            RAG Studio may make mistakes. Always verify important information
+            against the cited source.
+          </div>
+        </section>
+      </main>
+
+      <section class="kb-panel" id="kbPanel">
+        <div class="kb-header">
+          <div>
+            <div class="section-label">KNOWLEDGE BASE</div>
+            <h2>Documents</h2>
+          </div>
+          <button class="close-btn" id="closeKb">×</button>
+        </div>
+
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-plus">＋</div>
+          <strong>Add documents</strong>
+          <span>Click to browse or drop files here</span>
+          <small>PDF · DOCX · TXT · up to 25 MB</small>
+        </div>
+
+        <div class="files-heading">
+          <strong><span id="fileCount">0</span> files</strong>
+          <span>Indexed knowledge</span>
+        </div>
+        <div class="document-list" id="documentList"></div>
+      </section>
+
+      <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
